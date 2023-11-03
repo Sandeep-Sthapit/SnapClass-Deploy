@@ -132,6 +132,14 @@ export const useColumnStore = defineStore("ColumnStore", {
         },
         toggleVisibility(columnName) {
             this.columns[columnName].visibility = !this.columns[columnName].visibility;
+        },
+        updateSortDirection(columnName) {
+            if (this.columns[columnName].sort == 0) {
+                this.columns[columnName].sort = 1
+            } else {
+                this.columns[columnName].sort = -1 * this.columns[columnName].sort
+            }
+            return this.columns[columnName].sort
         }
     }
 

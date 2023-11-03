@@ -66,6 +66,7 @@ function closeStudentModal() {
 
 <template>
     <div class="class-view">
+        <!-- <button @click="studentStore.sortStudents('lastHelped')">sort name</button> -->
         <div class="page-container" :class="{ noClick: modalOpen }">
             <HeaderItem />
             <div class="wrapper">
@@ -82,7 +83,7 @@ function closeStudentModal() {
         </div>
         <StudentPop v-if="studentOpen" @hideStudentDetails="closeStudentModal" :id="defaultStudent.id"
             :name="defaultStudent.name" :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect"
-            :handRaised="defaultStudent.handRaised" :lastActive="defaultStudent.lastActive"
+            :handRaised="defaultStudent.hand" :lastActive="defaultStudent.lastActive"
             :loc2min="defaultStudent.loc2min" :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned"
             :msgText="defaultStudent.helpMessage" :msgUrl="defaultStudent.codeURL" />
         <MessagePop v-if="msgOpen" @hideModal="closeModal" @showModal="openModal" :msgText=msgText :msgUrl=msgImgUrl />
