@@ -1,0 +1,13 @@
+@import './base.css';
+#app {
+    min-width: 1024px;
+}
+
+* {
+    position: relative;
+}
+
+.snapclass-button:hover {
+    transform: scale(1.25);
+    filter: brightness(125%);
+}
