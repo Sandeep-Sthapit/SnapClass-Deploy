@@ -104,6 +104,6 @@ function closeStudentModal() {
 
 .noClick {
     pointer-events: none;
-    filter: brightness(0.5);
+    opacity: 0.5
 }
 </style>

@@ -27,3 +27,7 @@ npm run dev
 ```sh
 npm run build
 ```
+
+# deploy site
+
+https://65445a221ff0ff2b7da2ce5f--aquamarine-chimera-d03d31.netlify.app/
