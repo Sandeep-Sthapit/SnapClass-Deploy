@@ -16,13 +16,17 @@ const AFFECTLABEL = AFFECT_LABEL
 
 const HANDS = HAND
 const HANDSTEXT = HANDS_TEXT
-console.log(props)
 
+const emit = defineEmits(['customChange'])
 const showStar = ref(props.isPinned)
 
 function togglePin() {
     showStar.value = !showStar.value;
     studentStore.pinStudent(props.id, showStar.value)
+}
+
+const openCodeView = (event) => {
+  emit('showCodeView', props)
 }
 
 const props = defineProps({
@@ -124,7 +128,7 @@ const props = defineProps({
                 <iframe
                     src="https://snap.berkeley.edu/snap/snap.html#present:Username=cornelios207&ProjectName=Missing%20square%20illusion&editMode&noRun"
                     frameborder="0"></iframe>
-                <p id="view-code-button" class="btn-small waves-effect">View Code</p>
+                <p id="view-code-button" class="btn-small waves-effect"  @click="openCodeView">View Code</p>
             </div>
         </div>
     </div>

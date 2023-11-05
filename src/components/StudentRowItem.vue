@@ -32,6 +32,9 @@ const emit = defineEmits(['customChange'])
 const openStudentDetails = (event) => {
   emit('showStudentDetails', props)
 }
+const openCodeView = (event) => {
+  emit('showCodeView', props)
+}
 
 // console.log(COLUMNS)
 
@@ -98,7 +101,7 @@ const props = defineProps({
                 <!-- <img class="dragIcon" :src=draggableIcon alt=""> -->
                 
                 <span class="star-icon fa fa-star" :class="{ checked: isPinned }" @click="togglePin()"></span>
-                <a class="codeIcon" href=""><img :src=codeIcon alt=""></a>
+                <p class="codeIcon" @click="openCodeView"><img :src=codeIcon alt=""></p>
 
                 <p class="student-name" @click="openStudentDetails">
                     {{ name }}
@@ -137,7 +140,7 @@ const props = defineProps({
         </td>
         <td v-if="columnStore.isViewCode" class="center-td"
             :style="{ order: columnStore.viewCodeOrder, width: columnStore.viewCodeWidth }">
-            <a id="view-code-button" class="btn-small waves-effect waves-light">Code</a>
+            <p id="view-code-button" class="btn-small waves-effect waves-light" @click="openCodeView">Code</p>
         </td>
         <td v-if="columnStore.isSubmission"
             :style="{ order: columnStore.submissionOrder, width: columnStore.submissionWidth }"

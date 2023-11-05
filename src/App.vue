@@ -2,6 +2,7 @@
 import HeaderItem from './components/HeaderItem.vue';
 import MessagePop from './components/MessagePop.vue'
 import StudentPop from './components/StudentPop.vue'
+import CodeView from './components/CodeView.vue'
 import Bins from './components/Bins.vue'
 import { ref } from 'vue'
 
@@ -25,10 +26,10 @@ let defaultStudent = ref({
     "lastHelped": "56 minutes ago",
     "affect": "Focused",
     "lastActive": "19 seconds",
-    "code2Min": 12,
-    "handRaised": "code",
-    "helpMessage": "I need help with this",
-    "codeURL": "",
+    "loc2min": 12,
+    "hand": "code",
+    "msgText": "I need help with this",
+    "msgURL": "",
     "teacherMessage": "",
     "isPinned": false,
     "submission": ""
@@ -37,6 +38,7 @@ let defaultStudent = ref({
 
 let msgOpen = ref(false)
 let studentOpen = ref(false)
+let codeOpen = ref(false)
 
 let modalOpen = ref(false)
 
@@ -51,11 +53,23 @@ function closeModal() {
     msgOpen.value = false;
     modalOpen.value = false;
 }
+
+function openCode(student) {
+    defaultStudent.value = student;
+    codeOpen.value = true;
+    modalOpen.value = true;
+    studentOpen.value = false;
+}
+function closeCode() {
+    codeOpen.value = false;
+    modalOpen.value = false;
+}
+
 function openStudentModal(student) {
-    // console.log(student)
     defaultStudent.value = student;
     studentOpen.value = true;
     modalOpen.value = true;
+    codeOpen.value = false;
 }
 function closeStudentModal() {
     studentOpen.value = false;
@@ -75,17 +89,22 @@ function closeStudentModal() {
         <button @click="columnStore.toggleVisibility('lastHelped')">Hide</button> -->
                 <!-- <StudentRowItem name="Sandy" lastHelped="23 minutes ago" affect="happy" handRaised="code" lastActive="3 mins ago" loc2min="4 lines" submission="N/A"/> -->
 
-                <Bins @showStudentDetails="openStudentModal" name="Pinned Students" :studentData="studentStore.getPinned"
+                <Bins @showStudentDetails="openStudentModal" @showCodeView="openCode" name="Pinned Students" :studentData="studentStore.getPinned"
                     type="pinned" />
-                <Bins @showStudentDetails="openStudentModal" name="All Students" :studentData="studentStore.getStudents" />
+                <Bins @showStudentDetails="openStudentModal" @showCodeView="openCode"  name="All Students" :studentData="studentStore.getStudents" />
 
             </div>
         </div>
-        <StudentPop v-if="studentOpen" @hideStudentDetails="closeStudentModal" :id="defaultStudent.id"
+        <StudentPop v-if="studentOpen" @hideStudentDetails="closeStudentModal" :id="defaultStudent.id"  @showCodeView="openCode"
             :name="defaultStudent.name" :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect"
             :handRaised="defaultStudent.hand" :lastActive="defaultStudent.lastActive"
             :loc2min="defaultStudent.loc2min" :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned"
-            :msgText="defaultStudent.helpMessage" :msgUrl="defaultStudent.codeURL" />
+            :msgText="defaultStudent.msgText" :msgUrl="defaultStudent.msgUrl" />
+        <CodeView v-if="codeOpen" @hideCode="closeCode" :id="defaultStudent.id"
+            :name="defaultStudent.name" :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect"
+            :handRaised="defaultStudent.hand" :lastActive="defaultStudent.lastActive"
+            :loc2min="defaultStudent.loc2min" :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned"
+            :msgText="defaultStudent.msgText" :msgUrl="defaultStudent.msgUrl" />
         <MessagePop v-if="msgOpen" @hideModal="closeModal" @showModal="openModal" :msgText=msgText :msgUrl=msgImgUrl />
     </div>
 </template>

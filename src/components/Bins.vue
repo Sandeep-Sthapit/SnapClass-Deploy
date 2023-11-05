@@ -16,6 +16,9 @@ const emit = defineEmits(['customChange'])
 const openStudentModal = (event) => {
     emit('showStudentDetails', event)
 }
+const showCodeView = (event) => {
+    emit('showCodeView', event)
+}
 
 let isCollapsed = ref(false);
 function collapseBin() {
@@ -137,7 +140,7 @@ const props = defineProps({
 
                 <tbody>
                     <template v-for="student in studentData" :key="student.id">
-                        <StudentRowItem @showStudentDetails="openStudentModal" :id="student.id" :name="student.name"
+                        <StudentRowItem @showStudentDetails="openStudentModal" @showCodeView="showCodeView" :id="student.id" :name="student.name"
                             :lastHelped="student.lastHelped" :affect="student.affect" :handRaised="student.hand"
                             :lastActive="student.lastActive" :loc2min="student.loc2min" :submission="student.submission"
                             :isPinned="student.isPinned" :msgText="student.helpMessage" :msgUrl="student.codeURL" />
