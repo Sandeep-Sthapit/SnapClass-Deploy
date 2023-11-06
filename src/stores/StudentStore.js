@@ -6,6 +6,11 @@ import { useColumnStore as columnStore } from './ColumnStore';
 
 
 const studentData = students;
+const msgMode = false;
+let checkedStudents = {}
+students.forEach(function(student) {
+    checkedStudents[student["id"]] = false;
+})
 const timedColNames = ["lastHelped", "lastActive"]
 const StringColNames = ["name", "affect", "hand", "submission"]
 
@@ -73,6 +78,8 @@ export const useStudentStore = defineStore("StudentStore", {
     state: () => {
         return {
             studentData,
+            msgMode,
+            checkedStudents,
         }
     },
     //getters
@@ -112,7 +119,21 @@ export const useStudentStore = defineStore("StudentStore", {
             this.studentData = this.studentData.sort((a, b) => compareDirection(a, b, columnName, colDirection));
             // console.log(this.studentData);
         },
-
+        toggleMsgMode() {
+            this.msgMode = !this.msgMode
+        },
+        addStudentsToCheckList(id) {
+            this.checkedStudents[id] = true;
+        },
+        removeStudentsList(id) {
+            this.checkedStudents[id] = false;
+        },
+        emptyCheckedStudents() {
+            this.checkedStudents = []
+            this.studentData.forEach(function(student) {
+                checkedStudents[student["id"]] = false;
+            })
+        }
     }
 
 })

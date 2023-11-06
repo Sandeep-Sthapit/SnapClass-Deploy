@@ -4,10 +4,6 @@ import draggableIcon from "../assets/icons/draggable.svg";
 import codeIcon from "../assets/icons/code.svg";
 import studentColors from '../assets/style/colors.module.scss';
 
-
-// import {AFFECTLIST, AFFECTLABEL} from '@/affect.js'
-
-
 import { AFFECT_LIST, AFFECT_LABEL } from '@/affect.js'
 import { HAND, HANDS_TEXT, isHandRaised } from '@/handraise.js'
 
@@ -47,6 +43,15 @@ function togglePin() {
     studentStore.pinStudent(props.id, showStar.value)
 }
 
+
+function addToList(id) {
+    if (studentStore.checkedStudents[id] == false) {
+        studentStore.removeStudentsList(id);
+    }
+    else {
+        studentStore.addStudentsToCheckList(id);
+    }
+}
 const COLORS = studentColors;
 
 const props = defineProps({
@@ -103,7 +108,13 @@ const props = defineProps({
             <div class="name-container">
                 <!-- this should go in the bigger column thing to drag -->
                 <!-- <img class="dragIcon" :src=draggableIcon alt=""> -->
+                <form v-if="studentStore.msgMode" class="checkbox">
+                    <label>
 
+                        <input v-model="studentStore.checkedStudents[id]" class="filled-in" type="checkbox"
+                            @change="addToList(id)"><span></span>
+                    </label>
+                </form>
                 <span class="star-icon fa fa-star" :class="{ checked: isPinned }" @click="togglePin()"></span>
                 <p class="codeIcon" @click="openCodeView"><img :src=codeIcon alt=""></p>
 
@@ -209,6 +220,13 @@ const props = defineProps({
         padding: 0;
         order: 1;
 
+        .checkbox {
+            height: 18px;
+            width: 20px;
+            margin-right: 5px;
+            align-self: center;
+        }
+
         img {
             height: 100%;
             margin-right: 0.5rem;
@@ -289,5 +307,8 @@ const props = defineProps({
         line-height: 1.5rem;
     }
 
+    .hidden-label {
+        display: none !important;
+    }
 }
 </style>

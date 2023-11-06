@@ -20,6 +20,7 @@ const columnStore = useColumnStore();
 const studentStore = useStudentStore();
 
 const showStar = ref(props.isPinned)
+// const checkMode = ref(studentStore.msgMode)
 
 const AFFECTLIST = AFFECT_LIST
 const AFFECTLABEL = AFFECT_LABEL
@@ -44,6 +45,16 @@ const openHelpMsg = (event) => {
 function togglePin() {
     showStar.value = !showStar.value;
     studentStore.pinStudent(props.id, showStar.value)
+}
+
+
+function addToList(id) {
+    if (studentStore.checkedStudents[id] == false) {
+        studentStore.removeStudentsList(id);
+    }
+    else {
+        studentStore.addStudentsToCheckList(id);
+    }
 }
 
 const COLORS = studentColors;
@@ -99,6 +110,12 @@ const props = defineProps({
 <template>
     <tr class="student-container">
         <td v-if="columnStore.isHand" :style="{ width: columnStore.handWidth }" class=" center-td">
+            <form v-if="studentStore.msgMode" class="checkbox">
+                <label>
+                    <input v-model="studentStore.checkedStudents[id]"  class="filled-in" type="checkbox" @change="addToList(id)">
+                    <span></span>
+                </label>
+            </form>
             <div class="hand-raise">
                 <div v-if="isHandRaised(handRaised)">
                     <img @click="openHelpMsg" :src=HANDS[handRaised] alt="" :title=HANDSTEXT[handRaised]>
@@ -155,6 +172,13 @@ const props = defineProps({
         align-items: center;
         border-right: 1px solid $text-surface;
         // order: 5;
+    }
+
+    .checkbox {
+        height: 18px;
+        width: 20px;
+        margin-right: 5px;
+        align-self: center;
     }
 
     td:first-child {

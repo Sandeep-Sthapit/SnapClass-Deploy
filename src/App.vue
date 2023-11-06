@@ -3,6 +3,7 @@ import HeaderItem from './components/HeaderItem.vue';
 import MessagePop from './components/MessagePop.vue'
 import StudentPop from './components/StudentPop.vue'
 import CodeView from './components/CodeView.vue'
+import ComposeMessage from './components/ComposeMessage.vue'
 import HandRaiseContainer from './components/HandRaiseContainer.vue'
 import Bins from './components/Bins.vue'
 import { ref } from 'vue'
@@ -37,6 +38,7 @@ let defaultStudent = ref({
 })
 
 
+let composeMsg = ref(false)
 let msgOpen = ref(false)
 let studentOpen = ref(false)
 let codeOpen = ref(false)
@@ -54,6 +56,17 @@ function openMsg(student) {
 }
 function closeMsg() {
     msgOpen.value = false;
+    modalOpen.value = false;
+}
+
+function openCompose() {
+    composeMsg.value = true;
+    codeOpen.value = false;
+    modalOpen.value = true;
+    studentOpen.value = false;
+}
+function closeCompose() {
+    composeMsg.value = false;
     modalOpen.value = false;
 }
 
@@ -85,7 +98,7 @@ function closeStudentModal() {
     <div class="class-view">
         <!-- <button @click="studentStore.sortStudents('lastHelped')">sort name</button> -->
         <div class="page-container" :class="{ noClick: modalOpen }">
-            <HeaderItem />
+            <HeaderItem @openMsgWindow="openCompose()"/>
             <div class="wrapper">
                 <!-- <div v-for="column in columnStore.columns" :key="column.name"> {{ column.name }} {{ column.order }} {{ column.visibility }}</div>
         <button @click="columnStore.changeOrder('affect', 5)">Randomize</button>
@@ -111,6 +124,7 @@ function closeStudentModal() {
             :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned" :msgText="defaultStudent.msgText"
             :msgUrl="defaultStudent.msgUrl" />
         <MessagePop v-if="msgOpen" @hideModal="closeMsg" @showCodeView="openCode" :msgText="msgText" :msgUrl="msgImgUrl" />
+        <ComposeMessage v-if="composeMsg" @hideCompose="closeCompose()" :msgText="msgText" :msgUrl="msgImgUrl" />
     </div>
 </template>
 

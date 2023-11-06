@@ -1,4 +1,8 @@
 <script setup>
+import { useStudentStore } from '@/stores/StudentStore.js';
+
+import { ref } from 'vue'
+
 let instances;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -6,7 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var instances = M.FormSelect.init(elems, {});
 });
 
+const studentStore = useStudentStore();
+let msgClicked = ref(false)
 let isOpen = false;
+
 function openClose() {
     isOpen = !isOpen;
     if (isOpen) {
@@ -16,6 +23,23 @@ function openClose() {
     }
 }
 
+const emit = defineEmits(['customChange'])
+
+function openMsg(){
+    msgClicked.value = true;
+    studentStore.emptyCheckedStudents();
+    studentStore.toggleMsgMode();
+}
+function closeMsg(){
+    msgClicked.value = false;
+    studentStore.toggleMsgMode();
+    console.log(studentStore.msgMode)
+}
+
+
+const openMsgWindow = (event) => {
+    emit('openMsgWindow')
+}
 
 </script>
 
@@ -38,8 +62,13 @@ function openClose() {
                 </div>
             </div>
         </div>
+        <div v-if="msgClicked" class="msg-options">
+            <p class="instruction">Select Students to Send Message</p>
+            <p class="compose-button btn-small waves-effect waves-light" @click="openMsgWindow">Compose Message</p>
+            <p class="cancel-button btn-small waves-effect waves-light" @click="closeMsg">Cancel</p>
+        </div>
         <div class="side-button">
-            <p class="msg-button snapclass-button" ><i class="fa fa-envelope"></i></p>
+            <p class="msg-button snapclass-button" @click="openMsg()"><i class="fa fa-envelope"></i></p>
             <p class="settings-button snapclass-button" ><i class="fa fa-gear"></i></p>
         </div>
     </div>
@@ -81,13 +110,40 @@ function openClose() {
         color: $primary2;
         margin-left: 8px;
     }
+}
 
+.msg-options{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    *{
+        margin: 0 0.2rem;
+        transition: 0.1s linear;
+    }
+    .instruction{
+        color: $text-secondary;
+        font-size: 1rem;
+    }
+    .cancel-button{
+        background-color: red;
+    }
+    .compose-button:hover, .cancel-button:hover{
+        transform: scale(1.05);
+    }
+}
 
+.side-button{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: row;
 }
 .msg-button, .settings-button {
     font-size: 2rem;
     color: $primary;
     margin-left: 1rem;
+    cursor: pointer;
     :hover{
         transform: scale(1.1);
     }
