@@ -29,6 +29,7 @@ function collapseBin() {
     isCollapsed.value = !isCollapsed.value;
 }
 
+let numHandRaise = ref(studentStore.getHandRaised.length);
 // const studentData = ref(studentStore.getStudents)
 
 const props = defineProps({
@@ -50,7 +51,7 @@ const props = defineProps({
     <div class="bin-container">
         <div class="bin-title-container">
             <div class="bin-title">
-                <p class="bin-title-text">{{ name }}</p>
+                <p class="bin-title-text"><span>{{ name }}</span><span class="num-raised"> ({{ numHandRaise }})</span></p>
             </div>
             <p class="bin-collapse-button snapclass-button" @click="collapseBin()">
                 <i v-if="isCollapsed" class="fa fa-caret-down"></i>
@@ -143,6 +144,11 @@ const props = defineProps({
             font-weight: bold;
             color: $primary;
             margin-right: 2rem;
+        }
+        .num-raised{
+            color:red;
+            font-size: 1.25rem;
+            font-weight: bold;
         }
 
     }

@@ -39,8 +39,8 @@ function openClose() {
             </div>
         </div>
         <div class="side-button">
-            <a href="" class="msg-button snapclass-button" ><i class="fa fa-envelope"></i></a>
-            <a href="" class="settings-button snapclass-button" ><i class="fa fa-gear"></i></a>
+            <p class="msg-button snapclass-button" ><i class="fa fa-envelope"></i></p>
+            <p class="settings-button snapclass-button" ><i class="fa fa-gear"></i></p>
         </div>
     </div>
 </template>
