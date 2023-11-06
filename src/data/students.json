@@ -7,9 +7,9 @@
         "loc2min": 0,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
-        "isPinned": false,
+        "isPinned": true,
         "submission": ""
     },
     {
@@ -20,10 +20,10 @@
         "lastActive": "19 seconds",
         "loc2min": 7,
         "hand": "code",
-        "helpMessage": "I need help with this for loop.",
-        "codeURL": "",
+        "helpMessage": "I need help with this for loop. The code does not output anything.",
+        "msgUrl": "https://res.cloudinary.com/sandeepsthapit/image/upload/v1698880243/snap-loop.png",
         "teacherMessage": "",
-        "isPinned": false,
+        "isPinned": true,
         "submission": ""
     },
     {
@@ -35,7 +35,7 @@
         "loc2min": 0,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -47,9 +47,9 @@
         "affect": "Frustrated",
         "lastActive": "5 seconds",
         "loc2min": 9,
-        "hand": "code",
+        "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -63,7 +63,7 @@
         "loc2min": 10,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -76,8 +76,8 @@
         "lastActive": "8 seconds",
         "loc2min": 8,
         "hand": "other",
-        "helpMessage": "",
-        "codeURL": "",
+        "helpMessage": "I cannot find the resource for the assignment.",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -91,7 +91,7 @@
         "loc2min": 7,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -103,11 +103,11 @@
         "affect": "Confused",
         "lastActive": "55 seconds",
         "loc2min": 12,
-        "hand": "other",
+        "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
-        "isPinned": false,
+        "isPinned": true,
         "submission": ""
     },
     {
@@ -118,8 +118,8 @@
         "lastActive": "21 seconds",
         "loc2min": 11,
         "hand": "code",
-        "helpMessage": "",
-        "codeURL": "",
+        "helpMessage": "I need help with if statement.",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -133,7 +133,7 @@
         "loc2min": 6,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -147,7 +147,7 @@
         "loc2min": 3,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -161,7 +161,7 @@
         "loc2min": 0,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -175,7 +175,7 @@
         "loc2min": 0,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -187,9 +187,9 @@
         "affect": "Unhappy",
         "lastActive": "1 minute",
         "loc2min": 8,
-        "hand": "code",
+        "hand": "",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -203,7 +203,7 @@
         "loc2min": 5,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -217,7 +217,7 @@
         "loc2min": 0,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -231,7 +231,7 @@
         "loc2min": 0,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -245,7 +245,7 @@
         "loc2min": 13,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -259,7 +259,7 @@
         "loc2min": 0,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -268,12 +268,12 @@
         "id": 20,
         "name": "Chetan Rajan",
         "lastHelped": "25 minutes ago",
-        "affect": "Confused",
+        "affect": "Happy",
         "lastActive": "2 days",
         "loc2min": 0,
         "hand": "code",
-        "helpMessage": "",
-        "codeURL": "",
+        "helpMessage": "I do not know why my code does not run",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -287,7 +287,7 @@
         "loc2min": 15,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -301,21 +301,21 @@
         "loc2min": 0,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
     },
     {
         "id": 23,
-        "name": "Bum Park",
+        "name": "Eric Park",
         "lastHelped": "5 minutes ago",
-        "affect": "Confused",
+        "affect": "Neutral",
         "lastActive": "41 seconds\n",
         "loc2min": 13,
         "hand": "other",
-        "helpMessage": "",
-        "codeURL": "",
+        "helpMessage": "I am confused about question on the quiz last week.",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -329,7 +329,7 @@
         "loc2min": 9,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -343,7 +343,7 @@
         "loc2min": 0,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -357,7 +357,7 @@
         "loc2min": 0,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -371,7 +371,7 @@
         "loc2min": 18,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -385,7 +385,7 @@
         "loc2min": 12,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -399,7 +399,7 @@
         "loc2min": 11,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""
@@ -413,7 +413,7 @@
         "loc2min": 11,
         "hand": "no",
         "helpMessage": "",
-        "codeURL": "",
+        "msgUrl": "",
         "teacherMessage": "",
         "isPinned": false,
         "submission": ""

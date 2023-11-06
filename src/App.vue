@@ -3,6 +3,7 @@ import HeaderItem from './components/HeaderItem.vue';
 import MessagePop from './components/MessagePop.vue'
 import StudentPop from './components/StudentPop.vue'
 import CodeView from './components/CodeView.vue'
+import HandRaiseContainer from './components/HandRaiseContainer.vue'
 import Bins from './components/Bins.vue'
 import { ref } from 'vue'
 
@@ -45,11 +46,13 @@ let modalOpen = ref(false)
 let msgText = ref(defaultMsg)
 let msgImgUrl = ref(helpMsgImages["loop"])
 
-function openModal(msg, img) {
+function openMsg(student) {
+    msgText.value = student.msgText;
+    msgImgUrl.value = student.msgUrl;
     msgOpen.value = true;
     modalOpen.value = true;
 }
-function closeModal() {
+function closeMsg() {
     msgOpen.value = false;
     modalOpen.value = false;
 }
@@ -88,24 +91,26 @@ function closeStudentModal() {
         <button @click="columnStore.changeOrder('affect', 5)">Randomize</button>
         <button @click="columnStore.toggleVisibility('lastHelped')">Hide</button> -->
                 <!-- <StudentRowItem name="Sandy" lastHelped="23 minutes ago" affect="happy" handRaised="code" lastActive="3 mins ago" loc2min="4 lines" submission="N/A"/> -->
-
-                <Bins @showStudentDetails="openStudentModal" @showCodeView="openCode" name="Pinned Students" :studentData="studentStore.getPinned"
-                    type="pinned" />
-                <Bins @showStudentDetails="openStudentModal" @showCodeView="openCode"  name="All Students" :studentData="studentStore.getStudents" />
+                <HandRaiseContainer @showStudentDetails="openStudentModal" @showHelpMsg="openMsg" @showCodeView="openCode"
+                    name="Hand Raised" :studentData="studentStore.getHandRaised" type="pinned" />
+                <Bins @showStudentDetails="openStudentModal" @showHelpMsg="openMsg" @showCodeView="openCode"
+                    name="Pinned Students" :studentData="studentStore.getPinned" type="pinned" />
+                <Bins @showStudentDetails="openStudentModal" @showHelpMsg="openMsg" @showCodeView="openCode"
+                    name="All Students" :studentData="studentStore.getStudents" />
 
             </div>
         </div>
-        <StudentPop v-if="studentOpen" @hideStudentDetails="closeStudentModal" :id="defaultStudent.id"  @showCodeView="openCode"
-            :name="defaultStudent.name" :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect"
-            :handRaised="defaultStudent.hand" :lastActive="defaultStudent.lastActive"
+        <StudentPop v-if="studentOpen" @hideStudentDetails="closeStudentModal" :id="defaultStudent.id"
+            @showCodeView="openCode" :name="defaultStudent.name" :lastHelped="defaultStudent.lastHelped"
+            :affect="defaultStudent.affect" :handRaised="defaultStudent.hand" :lastActive="defaultStudent.lastActive"
             :loc2min="defaultStudent.loc2min" :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned"
             :msgText="defaultStudent.msgText" :msgUrl="defaultStudent.msgUrl" />
-        <CodeView v-if="codeOpen" @hideCode="closeCode" :id="defaultStudent.id"
-            :name="defaultStudent.name" :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect"
-            :handRaised="defaultStudent.hand" :lastActive="defaultStudent.lastActive"
-            :loc2min="defaultStudent.loc2min" :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned"
-            :msgText="defaultStudent.msgText" :msgUrl="defaultStudent.msgUrl" />
-        <MessagePop v-if="msgOpen" @hideModal="closeModal" @showModal="openModal" :msgText=msgText :msgUrl=msgImgUrl />
+        <CodeView v-if="codeOpen" @hideCode="closeCode" :id="defaultStudent.id" :name="defaultStudent.name"
+            :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect" :handRaised="defaultStudent.hand"
+            :lastActive="defaultStudent.lastActive" :loc2min="defaultStudent.loc2min"
+            :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned" :msgText="defaultStudent.msgText"
+            :msgUrl="defaultStudent.msgUrl" />
+        <MessagePop v-if="msgOpen" @hideModal="closeMsg" @showCodeView="openCode" :msgText="msgText" :msgUrl="msgImgUrl" />
     </div>
 </template>
 

@@ -39,7 +39,6 @@ const openCodeView = (event) => {
 const openHelpMsg = (event) => {
     emit('showHelpMsg', props)
 }
-
 // console.log(COLUMNS)
 
 function togglePin() {
@@ -99,11 +98,15 @@ const props = defineProps({
 
 <template>
     <tr class="student-container">
-        <td v-if="columnStore.isName" :style="{ order: columnStore.nameOrder, width: columnStore.nameWidth }">
+        <td v-if="columnStore.isHand" :style="{ width: columnStore.handWidth }" class=" center-td">
+            <div class="hand-raise">
+                <div v-if="isHandRaised(handRaised)">
+                    <img @click="openHelpMsg" :src=HANDS[handRaised] alt="" :title=HANDSTEXT[handRaised]>
+                </div>
+            </div>
+        </td>
+        <td v-if="columnStore.isName" :style="{ width: columnStore.nameWidth }">
             <div class="name-container">
-                <!-- this should go in the bigger column thing to drag -->
-                <!-- <img class="dragIcon" :src=draggableIcon alt=""> -->
-
                 <span class="star-icon fa fa-star" :class="{ checked: isPinned }" @click="togglePin()"></span>
                 <p class="codeIcon" @click="openCodeView"><img :src=codeIcon alt=""></p>
 
@@ -112,47 +115,22 @@ const props = defineProps({
                 </p>
             </div>
         </td>
-        <td v-if="columnStore.isLastHelped"
-            :style="{ order: columnStore.lastHelpedOrder, width: columnStore.lastHelpedWidth }" class="last-helped">
+        <td :style="{ width: '300px' }" class="help-msg center-td" @click="openHelpMsg">
+            <p @click="openHelpMsg">
+                {{ msgText }}
+            </p>
+        </td>
+        <td v-if="columnStore.isLastHelped" :style="{ width: columnStore.lastHelpedWidth }" class="last-helped">
             <p>
                 {{ lastHelped }}
             </p>
         </td>
-        <td v-if="columnStore.isAffect" :style="{ order: columnStore.affectOrder, width: columnStore.affectWidth }"
-            class=" center-td">
+        <td v-if="columnStore.isAffect" :style="{ width: columnStore.affectWidth }" class=" center-td">
             <img class="affectIcon" :src=AFFECTLIST[affect.toLowerCase()] :alt=AFFECTLABEL[affect]
                 :title=AFFECTLABEL[affect]>
         </td>
-        <td v-if="columnStore.isHand" :style="{ order: columnStore.handOrder, width: columnStore.handWidth }"
-            class=" center-td">
-            <div class="hand-raise">
-                <div v-if="isHandRaised(handRaised)">
-                    <img @click="openHelpMsg" :src=HANDS[handRaised] alt="" :title=HANDSTEXT[handRaised]>
-                </div>
-            </div>
-        </td>
-        <td v-if="columnStore.isLastActive"
-            :style="{ order: columnStore.lastActiveOrder, width: columnStore.lastActiveWidth }" class="metrics">
-            <p>
-                {{ lastActive }}
-            </p>
-        </td>
-        <td v-if="columnStore.isLoc2min" :style="{ order: columnStore.loc2minOrder, width: columnStore.loc2minWidth }"
-            class="metrics">
-            <p>
-                {{ loc2min }}
-            </p>
-        </td>
-        <td v-if="columnStore.isViewCode" class="center-td"
-            :style="{ order: columnStore.viewCodeOrder, width: columnStore.viewCodeWidth }">
+        <td v-if="columnStore.isViewCode" class="center-td" :style="{ width: columnStore.viewCodeWidth }">
             <p id="view-code-button" class="btn-small waves-effect waves-light" @click="openCodeView">Code</p>
-        </td>
-        <td v-if="columnStore.isSubmission"
-            :style="{ order: columnStore.submissionOrder, width: columnStore.submissionWidth }"
-            class="submission center-td">
-            <p>
-                {{ submission }}
-            </p>
         </td>
     </tr>
 </template>
@@ -249,7 +227,6 @@ const props = defineProps({
     }
 
     .last-helped,
-    .submission,
     .metrics {
 
         // order: 2;
@@ -257,6 +234,26 @@ const props = defineProps({
             color: $text-secondary;
             font-size: 0.8rem;
         }
+    }
+
+    .help-msg {
+        overflow: hidden;
+        padding: 3px;
+        cursor: pointer;
+        transition: 1s linear;
+
+        p {
+            width: 100%;
+            color: $text-secondary;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
+    .help-msg:hover {
+        background-color: #BBB;
     }
 
     .affectIcon {

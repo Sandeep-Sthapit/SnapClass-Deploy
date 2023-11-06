@@ -83,7 +83,7 @@ export const useStudentStore = defineStore("StudentStore", {
         getHandRaised() {
             let retData = []
             this.studentData.forEach(function(student) {
-                if (student.handRaised == "code" || student.handRaised == "other") {
+                if (student.hand == "code" || student.hand == "other") {
                     retData.push(student)
                 }
             })
@@ -111,7 +111,8 @@ export const useStudentStore = defineStore("StudentStore", {
             let colDirection = columnStore().updateSortDirection(columnName)
             this.studentData = this.studentData.sort((a, b) => compareDirection(a, b, columnName, colDirection));
             // console.log(this.studentData);
-        }
+        },
+
     }
 
 })

@@ -1,7 +1,6 @@
 <script setup>
-import draggableIcon from "../assets/icons/draggable.svg";
 import studentColors from '@/assets/style/colors.module.scss';
-import StudentRowItem from './StudentRowItem.vue';
+import HandRaiseRow from './HandRaiseRow.vue';
 
 import { ref } from 'vue'
 import { useColumnStore } from '@/stores/ColumnStore.js';
@@ -19,6 +18,7 @@ const openStudentModal = (event) => {
 const showCodeView = (event) => {
     emit('showCodeView', event)
 }
+
 
 const showHelpMsg = (event) => {
     emit('showHelpMsg', event)
@@ -60,80 +60,40 @@ const props = defineProps({
         <div class="bin-body" :class="{ collapsed: isCollapsed }">
 
             <table>
-                <!-- <colgroup>
-            <col v-if="columnStore.isName" span="1" 
-                        :style="{ width: columnStore.nameWidth + 'px' }">
-            <col v-if="columnStore.isLastHelped" span="1"
-                        :style="{ width: columnStore.lastHelpedWidth + 'px' }">
-            <col v-if="columnStore.isAffect" span="1"
-                        :style="{ width: columnStore.affectWidth + 'px' }">
-            <col v-if="columnStore.isHand" span="1"
-                        :style="{ width: columnStore.handWidth + 'px' }">
-            <col v-if="columnStore.isLastActive" span="1"
-                        :style="{ width: columnStore.lastActiveWidth + 'px' }">
-            <col v-if="columnStore.isLoc2min" span="1"
-                        :style="{ width: columnStore.loc2minWidth + 'px' }">
-            <col v-if="columnStore.isViewCode" span="1"
-                        :style="{ width: columnStore.viewCodeWidth + 'px' }">
-            <col v-if="columnStore.isSubmission" span="1"
-                        :style="{ width: columnStore.submissionWidth + 'px' }">
-            </colgroup> -->
                 <thead>
                     <tr class="table-header">
-                        <th v-if="columnStore.isName"
-                            :style="{ order: columnStore.nameOrder, width: columnStore.nameWidth }"
-                            class="table-header-item">
+                        <th v-if="columnStore.isHand" :style="{ width: columnStore.handWidth }" class="table-header-item">
+                            <p>{{ columnStore.columns["hand"].name }}</p>
+                            <p :title="sortMsg" class="sort-button" @click="studentStore.sortStudents('hand')"><i
+                                    class="fa fa-sort"></i> </p>
+                        </th>
+                        <th v-if="columnStore.isName" :style="{ width: columnStore.nameWidth }" class="table-header-item">
                             <p>{{ columnStore.columns["name"].name }}</p>
                             <p :title="sortMsg" class="sort-button" @click="studentStore.sortStudents('name')"><i
                                     class="fa fa-sort"></i>
                             </p>
                         </th>
-                        <th v-if="columnStore.isLastHelped"
-                            :style="{ order: columnStore.lastHelpedOrder, width: columnStore.lastHelpedWidth }"
+
+                        <th :style="{ width: '300px' }" class="table-header-item">
+                            <p>Help Message</p>
+                            <p :title="sortMsg" class="sort-button" @click="studentStore.sortStudents('submission')"><i
+                                    class="fa fa-sort"></i> </p>
+                        </th>
+                        <th v-if="columnStore.isLastHelped" :style="{ width: columnStore.lastHelpedWidth }"
                             class="table-header-item">
                             <p>{{ columnStore.columns["lastHelped"].name }}</p>
                             <p :title="sortMsg" class="sort-button" @click="studentStore.sortStudents('lastHelped')"><i
                                     class="fa fa-sort"></i> </p>
                         </th>
-                        <th v-if="columnStore.isAffect"
-                            :style="{ order: columnStore.affectOrder, width: columnStore.affectWidth }"
+                        <th v-if="columnStore.isAffect" :style="{ width: columnStore.affectWidth }"
                             class="table-header-item">
                             <p>{{ columnStore.columns["affect"].name }}</p>
                             <p :title="sortMsg" class="sort-button" @click="studentStore.sortStudents('affect')"><i
                                     class="fa fa-sort"></i> </p>
                         </th>
-                        <th v-if="columnStore.isHand"
-                            :style="{ order: columnStore.handOrder, width: columnStore.handWidth }"
-                            class="table-header-item">
-                            <p>{{ columnStore.columns["hand"].name }}</p>
-                            <p :title="sortMsg" class="sort-button" @click="studentStore.sortStudents('hand')"><i
-                                    class="fa fa-sort"></i> </p>
-                        </th>
-                        <th v-if="columnStore.isLastActive"
-                            :style="{ order: columnStore.lastActiveOrder, width: columnStore.lastActiveWidth }"
-                            class="table-header-item">
-                            <p>{{ columnStore.columns["lastActive"].name }}</p>
-                            <p :title="sortMsg" class="sort-button" @click="studentStore.sortStudents('lastActive')"><i
-                                    class="fa fa-sort"></i> </p>
-                        </th>
-                        <th v-if="columnStore.isLoc2min"
-                            :style="{ order: columnStore.loc2minOrder, width: columnStore.loc2minWidth }"
-                            class="table-header-item">
-                            <p>{{ columnStore.columns["loc2min"].name }}</p>
-                            <p :title="sortMsg" class="sort-button" @click="studentStore.sortStudents('loc2min')"><i
-                                    class="fa fa-sort"></i> </p>
-                        </th>
-                        <th v-if="columnStore.isViewCode"
-                            :style="{ order: columnStore.viewCodeOrder, width: columnStore.viewCodeWidth }"
+                        <th v-if="columnStore.isViewCode" :style="{ width: columnStore.viewCodeWidth }"
                             class="table-header-item">
                             <p>{{ columnStore.columns["viewCode"].name }}</p>
-                        </th>
-                        <th v-if="columnStore.isSubmission"
-                            :style="{ order: columnStore.submissionOrder, width: columnStore.submissionWidth }"
-                            class="table-header-item">
-                            <p>{{ columnStore.columns["submission"].name }}</p>
-                            <p :title="sortMsg" class="sort-button" @click="studentStore.sortStudents('submission')"><i
-                                    class="fa fa-sort"></i> </p>
                         </th>
 
                         <!-- <th v-for="column in columnStore.columns" :key="column.name" class="table-header-item">
@@ -147,7 +107,7 @@ const props = defineProps({
 
                 <tbody>
                     <template v-for="student in studentData" :key="student.id">
-                        <StudentRowItem @showStudentDetails="openStudentModal" @showHelpMsg="showHelpMsg"
+                        <HandRaiseRow @showStudentDetails="openStudentModal" @showHelpMsg="showHelpMsg"
                             @showCodeView="showCodeView" :id="student.id" :name="student.name"
                             :lastHelped="student.lastHelped" :affect="student.affect" :handRaised="student.hand"
                             :lastActive="student.lastActive" :loc2min="student.loc2min" :submission="student.submission"
@@ -236,4 +196,5 @@ const props = defineProps({
 
 .collapsed {
     height: 2px;
-}</style>
+}
+</style>
