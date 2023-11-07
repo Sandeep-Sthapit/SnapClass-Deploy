@@ -1,15 +1,23 @@
 <script setup>
 import { ref } from 'vue'
+import { useStudentStore } from '@/stores/StudentStore.js';
 
-const showCodeView = (event) => {
-    emit('showCodeView', event)
-}
+
+const studentStore = useStudentStore();
+const emit = defineEmits(['customChange'])
 
 const hasMsgUrl = ref(props.msgUrl.length > 2 ? true:false)
-console.log(hasMsgUrl)
+
+const openCodeView = (event) => {
+  emit('showCodeView', studentStore.studentData[props.id])
+}
 
 
 const props = defineProps({
+    id:{
+        type: String,
+        required: true
+    },
     msgText: {
         type: String,
         required: true
@@ -28,8 +36,8 @@ const props = defineProps({
             <img v-if="hasMsgUrl" :src="msgUrl" alt="">
         </div>
         <div class="button-containers">
-            <p id="reply-button" class="btn-small waves-effect">Reply</p>
-            <p id="view-code-button" @click="showCodeView" class="btn-small waves-effect">View Code</p>
+            <p id="reply-button" class="btn-small waves-effect" @click="$emit('openConvo')">Reply</p>
+            <p id="view-code-button" @click="openCodeView()" class="btn-small waves-effect">View Code</p>
         </div>
     </div>
 </template>
@@ -64,6 +72,12 @@ const props = defineProps({
             transform: scale(1.1);
         }
         z-index: 20;
+    }
+    .message-details{
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-direction: column;
     }
 
     img{

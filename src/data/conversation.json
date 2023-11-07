@@ -1,0 +1,13 @@
+[{
+        "isTeacher": false,
+        "text": "I need help with debugging the loop",
+        "url": "",
+        "time": "today at 10:15 am"
+    },
+    {
+        "isTeacher": true,
+        "text": "You can change the loop as follows, you forgot to initialize the variables",
+        "url": "https://res.cloudinary.com/sandeepsthapit/image/upload/v1698880243/snap-loop.png",
+        "time": "today at 10:25 am"
+    }
+]

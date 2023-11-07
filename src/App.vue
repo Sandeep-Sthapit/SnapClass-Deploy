@@ -5,6 +5,7 @@ import StudentPop from './components/StudentPop.vue'
 import CodeView from './components/CodeView.vue'
 import ComposeMessage from './components/ComposeMessage.vue'
 import HandRaiseContainer from './components/HandRaiseContainer.vue'
+import StudentConversation from './components/StudentConversation.vue'
 import Bins from './components/Bins.vue'
 import { ref } from 'vue'
 
@@ -42,13 +43,28 @@ let composeMsg = ref(false)
 let msgOpen = ref(false)
 let studentOpen = ref(false)
 let codeOpen = ref(false)
+let conversationView = ref(false)
+let msgStudentId = ref(defaultStudent.value.id)
 
 let modalOpen = ref(false)
 
 let msgText = ref(defaultMsg)
 let msgImgUrl = ref(helpMsgImages["loop"])
 
+function openConvo() {
+    conversationView.value = true;
+    codeOpen.value = false;
+    modalOpen.value = true;
+    studentOpen.value = false;
+}
+function closeConvo() {
+    conversationView.value = false;
+}
+
+
+
 function openMsg(student) {
+    msgStudentId.value = student.id;
     msgText.value = student.msgText;
     msgImgUrl.value = student.msgUrl;
     msgOpen.value = true;
@@ -98,7 +114,7 @@ function closeStudentModal() {
     <div class="class-view">
         <!-- <button @click="studentStore.sortStudents('lastHelped')">sort name</button> -->
         <div class="page-container" :class="{ noClick: modalOpen }">
-            <HeaderItem @openMsgWindow="openCompose()"/>
+            <HeaderItem @openMsgWindow="openCompose()" />
             <div class="wrapper">
                 <!-- <div v-for="column in columnStore.columns" :key="column.name"> {{ column.name }} {{ column.order }} {{ column.visibility }}</div>
         <button @click="columnStore.changeOrder('affect', 5)">Randomize</button>
@@ -113,18 +129,22 @@ function closeStudentModal() {
 
             </div>
         </div>
-        <StudentPop v-if="studentOpen" @hideStudentDetails="closeStudentModal" :id="defaultStudent.id"
-            @showCodeView="openCode" :name="defaultStudent.name" :lastHelped="defaultStudent.lastHelped"
-            :affect="defaultStudent.affect" :handRaised="defaultStudent.hand" :lastActive="defaultStudent.lastActive"
-            :loc2min="defaultStudent.loc2min" :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned"
-            :msgText="defaultStudent.msgText" :msgUrl="defaultStudent.msgUrl" />
+        <StudentPop v-if="studentOpen" @hideStudentDetails="closeStudentModal" @openConvo="openConvo"
+            @showCodeView="openCode" :id="defaultStudent.id" :name="defaultStudent.name"
+            :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect" :handRaised="defaultStudent.hand"
+            :lastActive="defaultStudent.lastActive" :loc2min="defaultStudent.loc2min"
+            :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned" :msgText="defaultStudent.msgText"
+            :msgUrl="defaultStudent.msgUrl" />
         <CodeView v-if="codeOpen" @hideCode="closeCode" :id="defaultStudent.id" :name="defaultStudent.name"
             :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect" :handRaised="defaultStudent.hand"
             :lastActive="defaultStudent.lastActive" :loc2min="defaultStudent.loc2min"
             :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned" :msgText="defaultStudent.msgText"
             :msgUrl="defaultStudent.msgUrl" />
-        <MessagePop v-if="msgOpen" @hideModal="closeMsg" @showCodeView="openCode" :msgText="msgText" :msgUrl="msgImgUrl" />
+        <MessagePop v-if="msgOpen" @hideModal="closeMsg" @openConvo="openConvo" @showCodeView="openCode" :msgText="msgText" :id="msgStudentId"
+            :msgUrl="msgImgUrl" />
         <ComposeMessage v-if="composeMsg" @hideCompose="closeCompose()" :msgText="msgText" :msgUrl="msgImgUrl" />
+        <StudentConversation v-if="conversationView" @hideConvo="closeConvo()" :id="defaultStudent.id"
+            :name="defaultStudent.name" />
     </div>
 </template>
 
@@ -144,5 +164,4 @@ function closeStudentModal() {
 .noClick {
     pointer-events: none;
     opacity: 0.5
-}
-</style>
+}</style>

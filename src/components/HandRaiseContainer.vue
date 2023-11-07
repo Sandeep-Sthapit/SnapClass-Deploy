@@ -77,8 +77,6 @@ const props = defineProps({
 
                         <th :style="{ width: '300px' }" class="table-header-item">
                             <p>Help Message</p>
-                            <p :title="sortMsg" class="sort-button" @click="studentStore.sortStudents('submission')"><i
-                                    class="fa fa-sort"></i> </p>
                         </th>
                         <th v-if="columnStore.isLastHelped" :style="{ width: columnStore.lastHelpedWidth }"
                             class="table-header-item">

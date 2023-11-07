@@ -47,8 +47,11 @@ const props = defineProps({
                     <textarea id="textarea1" class="materialize-textarea"></textarea>
                     <label for="textarea1">Message</label>
                 </div>
-                <img v-if="hasMsgUrl" src="https://res.cloudinary.com/sandeepsthapit/image/upload/v1698880243/snap-loop.png"
-                    alt="">
+                <div class="img-div">
+
+                    <img v-if="hasMsgUrl"
+                        src="https://res.cloudinary.com/sandeepsthapit/image/upload/v1698880243/snap-loop.png" alt="">
+                </div>
                 <p id="add-img-button" class="btn-small waves-effect" @click="toggleImg">{{ imageText }}</p>
             </div>
             <div class="student-lists">
@@ -142,17 +145,27 @@ const props = defineProps({
     .message-details {
         height: 80vh;
         width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
         border: 1px solid black;
         background-color: white;
 
         .text-area {
             height: auto;
+            width: 100%;
+        }
+
+        .img-div {
+            width: 100%;
+            max-height: 150px;
+
+            img {
+                max-height: 150px;
+            }
         }
     }
 
-    img {
-        max-width: 200px;
-    }
 
     .button-containers {
         width: 100%;

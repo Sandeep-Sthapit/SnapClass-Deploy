@@ -25,12 +25,12 @@ function openClose() {
 
 const emit = defineEmits(['customChange'])
 
-function openMsg(){
+function openMsg() {
     msgClicked.value = true;
     studentStore.emptyCheckedStudents();
     studentStore.toggleMsgMode();
 }
-function closeMsg(){
+function closeMsg() {
     msgClicked.value = false;
     studentStore.toggleMsgMode();
     console.log(studentStore.msgMode)
@@ -69,7 +69,15 @@ const openMsgWindow = (event) => {
         </div>
         <div class="side-button">
             <p class="msg-button snapclass-button" @click="openMsg()"><i class="fa fa-envelope"></i></p>
-            <p class="settings-button snapclass-button" ><i class="fa fa-gear"></i></p>
+            <!-- <p class="settings-button snapclass-button"><i class="fa fa-gear"></i></p> -->
+            <div class="dropdown-2" style="float:right;">
+                <p class="dropbtn settings-button snapclass-button"><i class="fa fa-gear"></i></p>
+                <div class="dropdown-content-2" style="right:0;">
+                    <p>Feature</p>
+                    <p>Under</p>
+                    <p>Development</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -82,7 +90,7 @@ const openMsgWindow = (event) => {
     align-items: center;
     justify-content: space-between;
     height: 2.5rem;
-    margin: 0.5rem 0rem; 
+    margin: 0.5rem 0rem;
 }
 
 .breadcrumb-container {
@@ -112,43 +120,83 @@ const openMsgWindow = (event) => {
     }
 }
 
-.msg-options{
+.msg-options {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    *{
+
+    * {
         margin: 0 0.2rem;
         transition: 0.1s linear;
     }
-    .instruction{
+
+    .instruction {
         color: $text-secondary;
         font-size: 1rem;
     }
-    .cancel-button{
+
+    .cancel-button {
         background-color: red;
     }
-    .compose-button:hover, .cancel-button:hover{
+
+    .compose-button:hover,
+    .cancel-button:hover {
         transform: scale(1.05);
     }
 }
 
-.side-button{
+.side-button {
     display: flex;
     align-items: center;
     justify-content: end;
     flex-direction: row;
+
+    .dropdown-2 {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .dropdown-content-2 {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 50;
+    }
+
+    .dropdown-content-2 p {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content-2 p:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown-2:hover .dropdown-content-2 {
+        display: block;
+    }
 }
-.msg-button, .settings-button {
+
+.msg-button,
+.settings-button {
     font-size: 2rem;
     color: $primary;
     margin-left: 1rem;
     cursor: pointer;
-    :hover{
+
+    :hover {
         transform: scale(1.1);
     }
 }
-.dropdown-menu>div{
+
+.dropdown-menu>div {
     margin: 0;
 }
 </style>

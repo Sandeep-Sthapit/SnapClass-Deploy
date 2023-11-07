@@ -117,7 +117,7 @@ const props = defineProps({
 
                 </div>
                 <div class="reply-container">
-                    <p id="reply-button" class="btn-small waves-effect">Reply</p>
+                    <p id="reply-button" class="btn-small waves-effect" @click="$emit('openConvo')">Reply</p>
                 </div>
             </div>
 
