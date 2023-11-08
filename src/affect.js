@@ -15,12 +15,12 @@ const AFFECT_LIST = {
     "frustrated": frustrated,
 }
 const AFFECT_LABEL = {
-    "happy": "happy",
-    "unhappy": "unhappy",
-    "neutral": "neutral",
-    "confused": "confused",
-    "focused": "focused",
-    "frustrated": "frustrated",
+    "happy": "Happy",
+    "unhappy": "Unhappy",
+    "neutral": "Neutral",
+    "confused": "Confused",
+    "focused": "Focused",
+    "frustrated": "Frustrated",
 }
 
 export {

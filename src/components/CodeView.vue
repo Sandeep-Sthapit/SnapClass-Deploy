@@ -136,13 +136,12 @@ const props = defineProps({
 @import "@/assets/style/colors.module";
 
 .code-view-container {
-    width: 100%;
+    width: 1024px;
     position: fixed;
     min-height: 100vh;
     top: 0vh;
     margin: 0;
     padding: 2rem;
-    position: absolute;
     top: 0%;
     left: 0%;
     background: white;

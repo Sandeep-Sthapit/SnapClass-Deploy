@@ -143,8 +143,8 @@ const props = defineProps({
             </p>
         </td>
         <td v-if="columnStore.isAffect" :style="{ width: columnStore.affectWidth }" class=" center-td">
-            <img class="affectIcon" :src=AFFECTLIST[affect.toLowerCase()] :alt=AFFECTLABEL[affect]
-                :title=AFFECTLABEL[affect]>
+            <img class="affectIcon" :src=AFFECTLIST[affect.toLowerCase()] :alt=AFFECTLABEL[affect.toLowerCase()]
+                :title=AFFECTLABEL[affect.toLowerCase()]>
         </td>
         <td v-if="columnStore.isViewCode" class="center-td" :style="{ width: columnStore.viewCodeWidth }">
             <p id="view-code-button" class="btn-small waves-effect waves-light" @click="openCodeView">Code</p>
@@ -195,6 +195,7 @@ const props = defineProps({
 
     .star-icon {
         margin-right: 0.25rem;
+        cursor: pointer;
     }
 
     .star-icon:hover {

@@ -244,12 +244,13 @@ const props = defineProps({
 }
 
 .conversation-container {
-    width: 100%;
+    width: 1024px;
     height: 100vh;
     padding: 1rem;
     position: fixed;
     top: 0;
-    left: 0%;
+    left: 50%;
+    transform: translateX(-50%);
     background: $surface2;
     z-index: 300;
     color: $text-secondary;

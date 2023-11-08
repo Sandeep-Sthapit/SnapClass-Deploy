@@ -131,8 +131,8 @@ const props = defineProps({
         </td>
         <td v-if="columnStore.isAffect" :style="{ order: columnStore.affectOrder, width: columnStore.affectWidth }"
             class=" center-td">
-            <img class="affectIcon" :src=AFFECTLIST[affect.toLowerCase()] :alt=AFFECTLABEL[affect]
-                :title=AFFECTLABEL[affect]>
+            <img class="affectIcon" :src=AFFECTLIST[affect.toLowerCase()] :alt=AFFECTLABEL[affect.toLowerCase()]
+                :title=AFFECTLABEL[affect.toLowerCase()]>
         </td>
         <td v-if="columnStore.isHand" :style="{ order: columnStore.handOrder, width: columnStore.handWidth }"
             class=" center-td">
@@ -204,6 +204,7 @@ const props = defineProps({
 
     .star-icon {
         margin-right: 0.25rem;
+        cursor: pointer;
     }
 
     .star-icon:hover {
