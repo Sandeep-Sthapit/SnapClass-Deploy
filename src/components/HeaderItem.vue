@@ -46,9 +46,20 @@ const openMsgWindow = (event) => {
 <template>
     <div class="top-row-container">
         <div class="breadcrumb-container">
-            <p class="breadcrumbs">
+            <!-- <p class="breadcrumbs">
                 CSC 110 - 001
-            </p>
+            </p> -->
+            <div class="dropdown-menu course-select">
+                <div class="input-field col s12">
+                    <select class="browser-default select-view">
+                        <option value="" disabled selected>CSC 110 - 001</option>
+                        <option value="1">CSC 110 - 002</option>
+                        <option value="2">AP CS1 - 01</option>
+                        <option value="3">AP CS1 - 02</option>
+                    </select>
+                    <!-- <label>Materialize Select</label> -->
+                </div>
+            </div>
             <!-- Dropdown Trigger -->
             <div class="dropdown-menu">
                 <div class="input-field col s12">
@@ -104,6 +115,15 @@ const openMsgWindow = (event) => {
         font-size: 16px;
         font-weight: bold;
         margin-right: 8px;
+    }
+
+    .course-select {
+        margin-right: 0.5rem;
+        select {
+            border: 2px solid $primary;
+            color: $primary;
+            font-weight: bold;
+        }
     }
 
     .select-view {

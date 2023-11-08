@@ -119,11 +119,14 @@ function closeStudentModal() {
         <button @click="columnStore.toggleVisibility('lastHelped')">Hide</button> -->
                 <!-- <StudentRowItem name="Sandy" lastHelped="23 minutes ago" affect="happy" handRaised="code" lastActive="3 mins ago" loc2min="4 lines" submission="N/A"/> -->
                 <HandRaiseContainer @showStudentDetails="openStudentModal" @showHelpMsg="openMsg" @showCodeView="openCode"
-                    name="Hand Raised" :studentData="studentStore.getHandRaised" type="pinned" />
+                    name="Hand Raised" :studentData="studentStore.getHandRaised"
+                    information="List of students with hand raised and text in red shows the number" type="pinned" />
                 <Bins @showStudentDetails="openStudentModal" @showHelpMsg="openMsg" @showCodeView="openCode"
-                    name="Pinned Students" :studentData="studentStore.getPinned" type="pinned" />
+                    name="Pinned Students" :studentData="studentStore.getPinned"
+                    information="Click star icon to pin or unpin students" type="pinned" />
                 <Bins @showStudentDetails="openStudentModal" @showHelpMsg="openMsg" @showCodeView="openCode"
-                    name="All Students" :studentData="studentStore.getStudents" />
+                    name="All Students" information="Click the triangle icon on the right to exapnd/contract view"
+                    :studentData="studentStore.getStudents" />
 
             </div>
         </div>
@@ -133,13 +136,13 @@ function closeStudentModal() {
             :lastActive="defaultStudent.lastActive" :loc2min="defaultStudent.loc2min"
             :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned" :msgText="defaultStudent.msgText"
             :msgUrl="defaultStudent.msgUrl" />
-        <CodeView v-if="codeOpen" @hideCode="closeCode" @openConvo="openConvo" :id="defaultStudent.id" :name="defaultStudent.name"
-            :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect" :handRaised="defaultStudent.hand"
-            :lastActive="defaultStudent.lastActive" :loc2min="defaultStudent.loc2min"
+        <CodeView v-if="codeOpen" @hideCode="closeCode" @openConvo="openConvo" :id="defaultStudent.id"
+            :name="defaultStudent.name" :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect"
+            :handRaised="defaultStudent.hand" :lastActive="defaultStudent.lastActive" :loc2min="defaultStudent.loc2min"
             :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned" :msgText="defaultStudent.msgText"
             :msgUrl="defaultStudent.msgUrl" />
-        <MessagePop v-if="msgOpen" @hideModal="closeMsg" @openConvo="openConvo" @showCodeView="openCode" :msgText="msgText" :id="msgStudentId"
-            :msgUrl="msgImgUrl" />
+        <MessagePop v-if="msgOpen" @hideModal="closeMsg" @openConvo="openConvo" @showCodeView="openCode" :msgText="msgText"
+            :id="msgStudentId" :msgUrl="msgImgUrl" />
         <ComposeMessage v-if="composeMsg" @hideCompose="closeCompose()" :msgText="msgText" :msgUrl="msgImgUrl" />
         <StudentConversation v-if="conversationView" @hideConvo="closeConvo()" :id="defaultStudent.id"
             :name="defaultStudent.name" />
@@ -162,4 +165,5 @@ function closeStudentModal() {
 .noClick {
     pointer-events: none;
     opacity: 0.5
-}</style>
+}
+</style>
