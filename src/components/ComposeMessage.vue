@@ -92,7 +92,7 @@ const props = defineProps({
     border: 1px solid black;
     border-radius: 1rem;
     background: $surface2;
-    z-index: 100;
+    z-index: 300;
     color: $text-secondary;
 
     .instruction-text {

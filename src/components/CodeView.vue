@@ -96,7 +96,7 @@ const props = defineProps({
                 </div>
                 <p class="last-helped-text"><span>Last Helped: </span><span>{{ lastHelped }}</span></p>
                 <div class="button-row">
-                    <p id="reply-button" class="btn-small waves-effect">Send Message</p>
+                    <p id="reply-button" class="btn-small waves-effect"  @click="$emit('openConvo')">Send Message</p>
                     <p id="metric-button" class="btn-small waves-effect" @click="openMetric()">Show Metric</p>
                 </div>
             </div>
@@ -137,7 +137,9 @@ const props = defineProps({
 
 .code-view-container {
     width: 100%;
-    height: 100%;
+    position: fixed;
+    min-height: 100vh;
+    top: 0vh;
     margin: 0;
     padding: 2rem;
     position: absolute;

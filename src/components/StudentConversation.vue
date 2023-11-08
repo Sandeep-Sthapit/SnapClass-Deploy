@@ -247,11 +247,11 @@ const props = defineProps({
     width: 100%;
     height: 100vh;
     padding: 1rem;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0%;
     background: $surface2;
-    z-index: 100;
+    z-index: 300;
     color: $text-secondary;
 
     .student-box {

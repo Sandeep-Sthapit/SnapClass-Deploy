@@ -53,15 +53,13 @@ let msgImgUrl = ref(helpMsgImages["loop"])
 
 function openConvo() {
     conversationView.value = true;
-    codeOpen.value = false;
     modalOpen.value = true;
     studentOpen.value = false;
 }
 function closeConvo() {
     conversationView.value = false;
+    modalOpen.value = false;
 }
-
-
 
 function openMsg(student) {
     msgStudentId.value = student.id;
@@ -135,7 +133,7 @@ function closeStudentModal() {
             :lastActive="defaultStudent.lastActive" :loc2min="defaultStudent.loc2min"
             :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned" :msgText="defaultStudent.msgText"
             :msgUrl="defaultStudent.msgUrl" />
-        <CodeView v-if="codeOpen" @hideCode="closeCode" :id="defaultStudent.id" :name="defaultStudent.name"
+        <CodeView v-if="codeOpen" @hideCode="closeCode" @openConvo="openConvo" :id="defaultStudent.id" :name="defaultStudent.name"
             :lastHelped="defaultStudent.lastHelped" :affect="defaultStudent.affect" :handRaised="defaultStudent.hand"
             :lastActive="defaultStudent.lastActive" :loc2min="defaultStudent.loc2min"
             :submission="defaultStudent.submission" :isPinned="defaultStudent.isPinned" :msgText="defaultStudent.msgText"
