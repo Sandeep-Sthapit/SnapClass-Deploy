@@ -112,7 +112,8 @@ const props = defineProps({
         <td v-if="columnStore.isHand" :style="{ width: columnStore.handWidth }" class=" center-td">
             <form v-if="studentStore.msgMode" class="checkbox">
                 <label>
-                    <input v-model="studentStore.checkedStudents[id]"  class="filled-in" type="checkbox" @change="addToList(id)">
+                    <input v-model="studentStore.checkedStudents[id]" class="filled-in" type="checkbox"
+                        @change="addToList(id)">
                     <span></span>
                 </label>
             </form>
@@ -312,4 +313,8 @@ const props = defineProps({
     }
 
 }
-</style>
+
+.student-container:hover {
+    background-color: #EEE;
+
+}</style>

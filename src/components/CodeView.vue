@@ -85,8 +85,8 @@ const props = defineProps({
                 <div class="top-row">
                     <div class="name-container">
                         <p class="student-name">{{ name }}</p>
-                        <img class="affectIcon" :src=AFFECTLIST[affect.toLowerCase()] :alt=AFFECTLABEL[affect]
-                            :title=AFFECTLABEL[affect]>
+                        <img class="affectIcon" :src=AFFECTLIST[affect.toLowerCase()] :alt=AFFECTLABEL[affect.toLowerCase()]
+                            :title=AFFECTLABEL[affect.toLowerCase()]>
                         <div class="hand-raise">
                             <div v-if="isHandRaised(handRaised)" href="">
                                 <img :src=HANDS[handRaised] alt="" :title=HANDSTEXT[handRaised]>
@@ -106,7 +106,7 @@ const props = defineProps({
                     <p>{{ msgText }}</p>
 
                 </div>
-                <div class="msg-expand">Click to Expand</div>
+                <div class="msg-expand" @click="$emit('openConvo')">Click to Expand</div>
             </div>
 
         </div>
@@ -143,7 +143,8 @@ const props = defineProps({
     margin: 0;
     padding: 2rem;
     top: 0%;
-    left: 0%;
+    left: 50%;
+    transform: translateX(-50%);
     background: white;
     z-index: 200;
     color: $text-secondary;
@@ -262,7 +263,7 @@ const props = defineProps({
         .code-window {
             width: 100%;
             background: black;
-            height: 75vh;
+            height: 80vh;
             overflow: scroll;
 
             iframe {

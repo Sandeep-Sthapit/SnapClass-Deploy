@@ -180,6 +180,7 @@ const props = defineProps({
     align-items: center;
     justify-content: space-between;
 
+
     td {
         margin: 0 0;
         padding: 0 2px;
@@ -311,5 +312,10 @@ const props = defineProps({
     .hidden-label {
         display: none !important;
     }
+}
+
+.student-container:hover {
+    background-color: #EEE;
+
 }
 </style>

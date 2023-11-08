@@ -26,7 +26,7 @@ function togglePin() {
 }
 
 const openCodeView = (event) => {
-  emit('showCodeView', props)
+    emit('showCodeView', props)
 }
 
 const props = defineProps({
@@ -102,8 +102,8 @@ const props = defineProps({
                 </div>
                 <div class="metric-component">
                     <p class="metric-name">{{ columnStore.columns["affect"].name }}</p>
-                    <img class="affectIcon" :src=AFFECTLIST[affect.toLowerCase()] :alt=AFFECTLABEL[affect]
-                        :title=AFFECTLABEL[affect]>
+                    <img class="affectIcon" :src=AFFECTLIST[affect.toLowerCase()] :alt=AFFECTLABEL[affect.toLowerCase()]
+                        :title=AFFECTLABEL[affect.toLowerCase()]>
                 </div>
                 <div class="metric-component">
                     <p class="metric-name">{{ columnStore.columns["lastHelped"].name }}</p>
@@ -128,7 +128,7 @@ const props = defineProps({
                 <iframe
                     src="https://snap.berkeley.edu/snap/snap.html#present:Username=cornelios207&ProjectName=Missing%20square%20illusion&editMode&noRun"
                     frameborder="0"></iframe>
-                <p id="view-code-button" class="btn-small waves-effect"  @click="openCodeView">View Code</p>
+                <p id="view-code-button" class="btn-small waves-effect" @click="openCodeView">View Code</p>
             </div>
         </div>
     </div>
@@ -267,13 +267,14 @@ const props = defineProps({
 
     .code-section {
         width: 100%;
+
         .code-window {
             width: 100%;
             background: black;
             height: 335px;
             overflow: scroll;
 
-            iframe{
+            iframe {
                 width: 100%;
                 height: 100%;
             }
@@ -294,4 +295,5 @@ const props = defineProps({
         // transform: translateX(-50%);
     }
 
-}</style>
+}
+</style>
