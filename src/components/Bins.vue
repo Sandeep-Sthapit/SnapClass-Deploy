@@ -36,6 +36,9 @@ const props = defineProps({
         type: String,
         required: true
     },
+    information:{
+        type: String,
+    },
     studentData: {
         type: Array,
         required: true
@@ -51,6 +54,7 @@ const props = defineProps({
         <div class="bin-title-container">
             <div class="bin-title">
                 <p class="bin-title-text">{{ name }}</p>
+                <i class="fa fa-info-circle" :title="information"></i>
             </div>
             <p class="bin-collapse-button snapclass-button" @click="collapseBin()">
                 <i v-if="isCollapsed" class="fa fa-caret-down"></i>
@@ -182,7 +186,7 @@ const props = defineProps({
             font-size: 1rem;
             font-weight: bold;
             color: $primary;
-            margin-right: 2rem;
+            margin-right: 0.5rem;
         }
 
     }
