@@ -49,8 +49,8 @@ const props = defineProps({
     width: 800px;
     min-height: 250px;
     padding: 1rem;
-    position: absolute;
-    top: 50%;
+    position: fixed;
+    top: 50vh;
     left: 50%;
     display: flex;
     flex-direction: column;
