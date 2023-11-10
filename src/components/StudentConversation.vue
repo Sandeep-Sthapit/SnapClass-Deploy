@@ -15,6 +15,7 @@ let message = ""
 let hasMsgUrl = ref(false);
 let imageText = ref("Add Image/Code")
 
+// console.log(studentStore.studentData[props.id-1])
 
 function toggleImg() {
     hasMsgUrl.value = !hasMsgUrl.value;
@@ -60,7 +61,7 @@ const props = defineProps({
             <div class="close-button" @click="$emit('hideConvo')"><i class="fa fa-close"></i></div>
             <div class="breadcrumb-container">
                 <p class="breadcrumbs">
-                    <span>{{ studentStore.studentData[id].name }}</span>
+                    <span>{{ studentStore.studentData[id-1].name }}</span>
                     <span class="msg-history-instruction"> Message History for</span>
                 </p>
                 <!-- Dropdown Trigger -->

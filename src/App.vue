@@ -144,7 +144,7 @@ function closeStudentModal() {
         <MessagePop v-if="msgOpen" @hideModal="closeMsg" @openConvo="openConvo" @showCodeView="openCode" :msgText="msgText"
             :id="msgStudentId" :msgUrl="msgImgUrl" />
         <ComposeMessage v-if="composeMsg" @hideCompose="closeCompose()" :msgText="msgText" :msgUrl="msgImgUrl" />
-        <StudentConversation v-if="conversationView" @hideConvo="closeConvo()" :id="defaultStudent.id"
+        <StudentConversation v-if="conversationView" @hideConvo="closeConvo()" :id="studentStore.selectedStudentId"
             :name="defaultStudent.name" />
     </div>
 </template>

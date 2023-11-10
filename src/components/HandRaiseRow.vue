@@ -31,13 +31,16 @@ const HANDSTEXT = HANDS_TEXT
 const emit = defineEmits(['customChange'])
 
 const openStudentDetails = (event) => {
+    studentStore.currentSelectedStudent(props.id);
     emit('showStudentDetails', props)
 }
 const openCodeView = (event) => {
+    studentStore.currentSelectedStudent(props.id);
     emit('showCodeView', props)
 }
 
 const openHelpMsg = (event) => {
+    studentStore.currentSelectedStudent(props.id);
     emit('showHelpMsg', props)
 }
 // console.log(COLUMNS)

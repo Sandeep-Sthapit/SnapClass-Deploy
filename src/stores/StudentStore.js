@@ -7,6 +7,7 @@ import { useColumnStore as columnStore } from './ColumnStore';
 
 const studentData = students;
 const msgMode = false;
+const selectedStudentId = 0;
 let checkedStudents = {}
 students.forEach(function(student) {
     checkedStudents[student["id"]] = false;
@@ -79,6 +80,7 @@ export const useStudentStore = defineStore("StudentStore", {
         return {
             studentData,
             msgMode,
+            selectedStudentId,
             checkedStudents,
         }
     },
@@ -130,6 +132,9 @@ export const useStudentStore = defineStore("StudentStore", {
         },
         removeStudentsList(id) {
             this.checkedStudents[id] = false;
+        },
+        currentSelectedStudent(id) {
+            this.selectedStudentId = id;
         },
         emptyCheckedStudents() {
             this.checkedStudents = []
