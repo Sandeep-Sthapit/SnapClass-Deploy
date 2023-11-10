@@ -28,11 +28,11 @@ const emit = defineEmits(['customChange'])
 function openMsg() {
     msgClicked.value = true;
     studentStore.emptyCheckedStudents();
-    studentStore.toggleMsgMode();
+    studentStore.changeMsgMode(true);
 }
 function closeMsg() {
     msgClicked.value = false;
-    studentStore.toggleMsgMode();
+    studentStore.changeMsgMode(false);
     console.log(studentStore.msgMode)
 }
 
@@ -73,7 +73,7 @@ const openMsgWindow = (event) => {
                 </div>
             </div>
         </div>
-        <div v-if="msgClicked" class="msg-options">
+        <div v-if="studentStore.msgMode" class="msg-options">
             <p class="instruction">Select Students to Send Message</p>
             <p class="compose-button btn-small waves-effect waves-light" @click="openMsgWindow">Compose Message</p>
             <p class="cancel-button btn-small waves-effect waves-light" @click="closeMsg">Cancel</p>

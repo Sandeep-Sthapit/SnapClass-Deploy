@@ -26,6 +26,12 @@ function addToList(id) {
     }
 }
 
+const emit = defineEmits(['customChange'])
+function hideCompose(){
+    emit('hideCompose');
+    studentStore.changeMsgMode(false);
+}
+
 const props = defineProps({
     msgText: {
         type: String,
@@ -68,8 +74,8 @@ const props = defineProps({
             </div>
         </div>
         <div class="button-containers">
-            <p id="send-button" class="btn-small waves-effect" @click="$emit('hideCompose')">Send</p>
-            <p id="cancel-button" class="btn-small waves-effect" @click="$emit('hideCompose')">Cancel
+            <p id="send-button" class="btn-small waves-effect" @click="hideCompose()">Send</p>
+            <p id="cancel-button" class="btn-small waves-effect" @click="hideCompose()">Cancel
             </p>
         </div>
     </div>
@@ -133,6 +139,7 @@ const props = defineProps({
         width: 35%;
         min-height: 300px;
         height: 80vh;
+        overflow: scroll;
         border: 1px solid black;
         background-color: white;
     }

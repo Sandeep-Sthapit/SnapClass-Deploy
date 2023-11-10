@@ -122,6 +122,9 @@ export const useStudentStore = defineStore("StudentStore", {
         toggleMsgMode() {
             this.msgMode = !this.msgMode
         },
+        changeMsgMode(bool) {
+            this.msgMode = bool
+        },
         addStudentsToCheckList(id) {
             this.checkedStudents[id] = true;
         },

@@ -130,9 +130,9 @@ const props = defineProps({
             </p>
         </td>
         <td v-if="columnStore.isAffect" :style="{ order: columnStore.affectOrder, width: columnStore.affectWidth }"
-            class=" center-td">
+            class=" center-td" :title=AFFECTLABEL[affect.toLowerCase()]>
             <img class="affectIcon" :src=AFFECTLIST[affect.toLowerCase()] :alt=AFFECTLABEL[affect.toLowerCase()]
-                :title=AFFECTLABEL[affect.toLowerCase()]>
+                >
         </td>
         <td v-if="columnStore.isHand" :style="{ order: columnStore.handOrder, width: columnStore.handWidth }"
             class=" center-td">
@@ -151,7 +151,7 @@ const props = defineProps({
         <td v-if="columnStore.isLoc2min" :style="{ order: columnStore.loc2minOrder, width: columnStore.loc2minWidth }"
             class="metrics">
             <p>
-                {{ loc2min }}
+                <span>{{ loc2min }}</span> <span>lines</span>
             </p>
         </td>
         <td v-if="columnStore.isViewCode" class="center-td"
