@@ -30,6 +30,10 @@ function openMsg() {
     studentStore.emptyCheckedStudents();
     studentStore.changeMsgMode(true);
 }
+function openMsgScroll() {
+    openMsg();
+    window.scrollTo(0, 0);
+}
 function closeMsg() {
     msgClicked.value = false;
     studentStore.changeMsgMode(false);
@@ -90,6 +94,10 @@ const openMsgWindow = (event) => {
                 </div>
             </div>
         </div>
+    </div>
+    
+    <div class="floating-button-container">
+        <p class="msg-button snapclass-button" @click="openMsgScroll()"><i class="fa fa-envelope" title="Send Message to Students"></i></p>
     </div>
 </template>
 
@@ -218,5 +226,19 @@ const openMsgWindow = (event) => {
 
 .dropdown-menu>div {
     margin: 0;
+}
+.floating-button-container{
+    position: fixed;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(580px);
+    z-index: 10000;
+    *{
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    background-color: white;
+    }
 }
 </style>

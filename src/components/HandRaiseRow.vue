@@ -129,7 +129,7 @@ const props = defineProps({
         <td v-if="columnStore.isName" :style="{ width: columnStore.nameWidth }">
             <div class="name-container">
                 <span class="star-icon fa fa-star" :class="{ checked: isPinned }" @click="togglePin()"></span>
-                <p class="codeIcon" @click="openCodeView"><img :src=codeIcon alt=""></p>
+                <p class="codeIcon" @click="openCodeView"><img :src=codeIcon alt=""  title="view code"></p>
 
                 <p class="student-name" @click="openStudentDetails">
                     {{ name }}
